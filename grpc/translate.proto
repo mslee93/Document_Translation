@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package Translate;
+
+// Service Definition
+service Translate {
+  rpc translate (translateRequest) returns (translateResponse) {}
+}
+
+// Message Definition
+message translateRequest {
+  string job_id = 1;
+  string file_name = 2;
+  bytes file_data = 3;
+  string src_lang = 4;
+  string tgt_lang = 5;
+  string eng = 6;
+}
+
+message translateResponse {
+  bytes file_data = 1;
+  }
+
+// python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. translate.proto
